@@ -12,4 +12,14 @@
 
 extern char **environ;
 
+typedef struct  s_shell {
+    char *cmd;
+    char *cmd_args;
+    char *options;
+}               t_shell;
+
+int		ft_parsing(char *cmd);
+int		ft_print(char *str, int status);
+void	ft_free(char *str);
+
 #endif

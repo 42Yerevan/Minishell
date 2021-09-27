@@ -1,4 +1,4 @@
-NAME = minishell
+NAME = libminishell.a
 LIBFT = ./libft/libft.a
 SRCS = $(shell find "." -name '*.c')
 OBJS = ${SRCS:.c=.o}
@@ -8,12 +8,16 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar csr
 
 .c.o :
-		@-${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+		@-${CC} -c $< -o ${<:.c=.o}
+		# @-${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME) : ${OBJS}
 		@$(MAKE) -C ./libft
-		@${CC} ${CFLAGS} -lreadline ${LIBFT} main.c -o ${NAME}
-		${RM} ${LIBFT}
+		@cp ${LIBFT} libminishell.a
+		@${AR} libminishell.a ${OBJS}
+		@${CC} -lreadline -L. -lminishell main.c -o minishell
+		# @${CC} ${CFLAGS} -lreadline -L. -lminishell main.c -o ${NAME}
+		# @${RM} ${LIBFT}
 
 all : ${NAME}
 
