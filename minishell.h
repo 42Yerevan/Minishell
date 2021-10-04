@@ -6,6 +6,8 @@
 #include <readline/history.h>
 #include <unistd.h>
 #include<stdlib.h>
+#include <signal.h>
+#include <termios.h>
 #include "./libft/libft.h"
 
 #define PROMPT ">> "
